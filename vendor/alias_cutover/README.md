@@ -2,7 +2,9 @@
 
 Keep a canonical URL active until the replacement target passes a probe for the same revision.
 
-Publishing and collaboration · framework · 0.1.1
+Publishing and collaboration · framework · 0.1.2
+
+Framework bird: Resplendent quetzal.
 
 ## Drive the workflow
 
@@ -31,10 +33,10 @@ blyxc native-run main.blyx -- propose 9 passed 9 switch 9 rollback 9
 ## Try the published project
 
 ```sh
-nest demo alias_cutover@0.1.1
+nest demo alias_cutover@0.1.2
 blyxc native-run alias_cutover-demo/main.blyx
 ```
 
-Install with `nest add alias_cutover@0.1.1` and import `vendor::alias_cutover::alias_cutover`.
+Install with `nest add alias_cutover@0.1.2` and import `vendor::alias_cutover::alias_cutover`.
 
 Maintained by Rahul Chaube. [Blyx](https://www.blyx-lang.space) · [GitHub](https://github.com/Rahulchaube1) · [LinkedIn](https://www.linkedin.com/in/rahulchaube1) · [Sponsor](https://github.com/sponsors/Rahulchaube1)

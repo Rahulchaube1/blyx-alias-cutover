@@ -2,7 +2,7 @@
   "name": "blyx-alias-cutover",
   "displayName": "Alias Cutover for Blyx",
   "publisher": "RahulChaube",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Keep a canonical URL active until the replacement target passes a probe for the same revision.",
   "license": "MIT",
   "engines": {
