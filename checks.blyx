@@ -1,0 +1,35 @@
+use std::cli;
+use vendor::alias_cutover::alias_cutover;
+
+fn main() {
+    let mut state = alias_cutover_start();
+    state = alias_cutover_step(state, "propose", 9.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "passed", 8.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "passed", 9.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "switch", 9.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "rollback", 9.0);
+    println!(alias_cutover_command(state));
+    println!(len(alias_cutover_step([], "bad", 0.0)));
+    println!(alias_cutover_command(alias_cutover_step(alias_cutover_start(), "unrecognized", 0.0)));
+    println!(len(alias_cutover_replay(args_new(), [1])));
+    let mut events = args_new();
+    events = args_push(events, "propose");
+    events = args_push(events, "passed");
+    events = args_push(events, "switch");
+    events = args_push(events, "rollback");
+    println!(alias_cutover_command(alias_cutover_replay(events, [9, 9, 9, 9])));
+    let branch_0 = alias_cutover_step([0, 0, 0], "propose", 1.0);
+    println!(at(branch_0, 0) == 1.0 && at(branch_0, 1) == 1.0 && alias_cutover_command(branch_0) == "probe_target");
+    let branch_1 = alias_cutover_step([1, 0, 0], "failed", 0.0);
+    println!(at(branch_1, 0) == 0.0 && at(branch_1, 1) == 0.0 && alias_cutover_command(branch_1) == "keep_canonical");
+    let branch_2 = alias_cutover_step([1, 0, 0], "passed", 0.0);
+    println!(at(branch_2, 0) == 2.0 && at(branch_2, 1) == 0.0 && alias_cutover_command(branch_2) == "stage_redirect");
+    let branch_3 = alias_cutover_step([2, 0, 0], "switch", 0.0);
+    println!(at(branch_3, 0) == 3.0 && at(branch_3, 1) == 0.0 && alias_cutover_command(branch_3) == "enable_redirect");
+    let branch_4 = alias_cutover_step([3, 0, 0], "rollback", 0.0);
+    println!(at(branch_4, 0) == 0.0 && at(branch_4, 1) == 0.0 && alias_cutover_command(branch_4) == "restore_canonical");
+}

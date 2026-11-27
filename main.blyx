@@ -1,0 +1,39 @@
+use std::cli;
+use std::text;
+use vendor::alias_cutover::alias_cutover;
+
+fn main() {
+    let arguments = cli_args();
+    if args_len(arguments) > 0 {
+        if args_len(arguments) % 2 != 0 {
+            stderr_line("Expected event and value pairs");
+            process_exit(2);
+        }
+        let mut live = alias_cutover_start();
+        let mut i = 0;
+        while i < args_len(arguments) {
+            let input = args_at(arguments, i + 1);
+            if !text_is_number(input) {
+                stderr_line("Expected a whole numeric event value");
+                process_exit(2);
+            }
+            live = alias_cutover_step(live, args_at(arguments, i), text_number(input));
+            let command = alias_cutover_command(live);
+            println!(command);
+            if command == "reject" { process_exit(1); }
+            i += 2;
+        }
+        return;
+    }
+    let mut state = alias_cutover_start();
+    state = alias_cutover_step(state, "propose", 9.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "passed", 8.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "passed", 9.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "switch", 9.0);
+    println!(alias_cutover_command(state));
+    state = alias_cutover_step(state, "rollback", 9.0);
+    println!(alias_cutover_command(state));
+}

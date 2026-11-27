@@ -1,0 +1,27 @@
+{
+  "alias_cutover_start": {
+    "prefix": "alias_cutover_start",
+    "body": "alias_cutover_start()",
+    "description": "Alias Cutover \u00b7 Keep a canonical URL active until the replacement target passes a probe for the same revision."
+  },
+  "alias_cutover_step": {
+    "prefix": "alias_cutover_step",
+    "body": "alias_cutover_step(${1:snapshot}, ${2:event}, ${3:value})",
+    "description": "Alias Cutover \u00b7 Keep a canonical URL active until the replacement target passes a probe for the same revision."
+  },
+  "alias_cutover_command": {
+    "prefix": "alias_cutover_command",
+    "body": "alias_cutover_command(${1:snapshot})",
+    "description": "Alias Cutover \u00b7 Keep a canonical URL active until the replacement target passes a probe for the same revision."
+  },
+  "alias_cutover_replay": {
+    "prefix": "alias_cutover_replay",
+    "body": "alias_cutover_replay(${1:events}, ${2:values})",
+    "description": "Alias Cutover \u00b7 Keep a canonical URL active until the replacement target passes a probe for the same revision."
+  },
+  "Import alias_cutover": {
+    "prefix": "use_alias_cutover",
+    "body": "use vendor::alias_cutover::alias_cutover;",
+    "description": "Import the installed Alias Cutover module"
+  }
+}
